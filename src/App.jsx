@@ -3,6 +3,7 @@ import { FC, useEffect, useRef } from 'react';
 import { Player } from '@lordicon/react';
 import LINK from './lottie/link.json'
 import SHARE from './lottie/share.json'
+import Hero from './components/Hero';
 
 function App() {
   const playerRef = useRef(null);
@@ -19,9 +20,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="h-[80vh] w-[90vh] bg-fuchsia-500 flex items-center justify-center border rounded-lg border-slate-950">
-        <ul className="w-[80vh] p-4">
-          <li className="my-4 bg-slate-50 w-full p-4 border rounded-lg shadow-2xl">
+      <div className="relative h-[80vh] sm:w-[80vh] w-[40vh] bg-amber-500 flex flex-col items-center justify-center rounded-2xl shadow-xl border-slate-950">
+        <div className='h-[25%] bg-neutral-950 w-full absolute top-0 rounded-t-lg'>
+        </div>
+          <Hero /> 
+        <ul className="sm:w-[70vh] w-[40vh] p-4">
+          <li className="my-4 bg-slate-50 w-full p-4 border rounded-2xl shadow-2xl">
             <div className="flex items-center justify-center">
               <span className="flex items-center gap-1">
                 <i class="devicon-linkedin-plain colored"></i>
