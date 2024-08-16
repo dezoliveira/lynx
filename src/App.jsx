@@ -3,6 +3,7 @@ import { FC, useEffect, useRef } from 'react';
 import { Player } from '@lordicon/react';
 import LINK from './lottie/link.json'
 import SHARE from './lottie/share.json'
+import Hero from './components/Hero';
 
 function App() {
   const playerRef = useRef(null);
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div className="App">
+      <Hero />
       <div className="h-[80vh] w-[90vh] bg-fuchsia-500 flex items-center justify-center border rounded-lg border-slate-950">
         <ul className="w-[80vh] p-4">
           <li className="my-4 bg-slate-50 w-full p-4 border rounded-lg shadow-2xl">
