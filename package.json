@@ -5,6 +5,7 @@
   "dependencies": {
     "@lordicon/element": "^1.9.0",
     "@lordicon/react": "^1.9.0",
+    "@supabase/supabase-js": "^2.45.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",

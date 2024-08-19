@@ -1,17 +1,35 @@
+// App.css
 import './App.css';
-import { FC, useEffect, useRef } from 'react';
+
+// Lord Icon
 import { Player } from '@lordicon/react';
 import LINK from './lottie/link.json'
 import SHARE from './lottie/share.json'
+
+// React
+import { useState, useEffect, useRef } from 'react';
+
+// Supabase
+import supabase from './supabaseClient';
+
+// Components
 import Hero from './components/Hero';
 
 function App() {
+  const [ links, setLinks ] = useState()
   const playerRef = useRef(null);
   const shareRef = useRef(null);
 
   useEffect(() => {
+    getLinks()
     playIcons()
-  }, [null]);
+  }, []);
+
+  const getLinks = async () => {
+    const { data, error } = await supabase.from("links").select()
+    setLinks(data)
+    console.log(data)
+  }
 
   const playIcons = () => {
     playerRef.current.playFromBeginning();
@@ -28,7 +46,7 @@ function App() {
           <li className="my-4 bg-slate-50 w-full p-4 border rounded-2xl shadow-2xl">
             <div className="flex items-center justify-center gap-4">
               <span className="flex items-center gap-1">
-                <i class="devicon-linkedin-plain colored text-2xl"></i>
+                <i className="devicon-linkedin-plain colored text-2xl"></i>
                 <h2 className="text-2xl">Linkedin</h2>
               </span>
               <div className="flex items-center">
@@ -44,7 +62,7 @@ function App() {
           <li className="my-4 bg-slate-50 w-full p-4 border rounded-lg shadow-2xl">
             <div className="flex items-center justify-center gap-8">
               <span className="flex items-center gap-1">
-                <i class="devicon-github-original colored text-2xl"></i>
+                <i className="devicon-github-original colored text-2xl"></i>
                 <h2 className="text-2xl">Github</h2>
               </span>
               <div className="flex items-center">
@@ -60,7 +78,7 @@ function App() {
           <li className="my-4 bg-slate-50 w-full p-4 border rounded-lg shadow-2xl">
             <div className="flex items-center justify-center gap-4">
               <span className="flex items-center gap-1">
-                <i class="devicon-vercel-original colored text-2xl"></i>
+                <i className="devicon-vercel-original colored text-2xl"></i>
                 <h2 className="text-2xl">Portfolio</h2>
               </span>
               <div className="flex items-center">
@@ -76,7 +94,7 @@ function App() {
           <li className=" my-4 bg-slate-50 w-full p-4 border rounded-lg shadow-2xl">
             <div className="flex items-center justify-center gap-4">
               <span className="flex items-center gap-1">
-                <i class="devicon-contao-original colored text-2xl"></i>
+                <i className="devicon-contao-original colored text-2xl"></i>
                 <h1 className="text-2xl">Contato</h1>
               </span>
               <div className="flex items-center">
