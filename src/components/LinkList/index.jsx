@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, createRef } from "react"
 
 // Lord Icon
 import { Player } from '@lordicon/react';
@@ -7,14 +7,37 @@ import SHARE from '../../lottie/share.json'
 import Loading from "../Loading";
 
 const LinkList = ({data}) => {
-  const playerRef = useRef(null);
-  const shareRef = useRef(null);
+  const refs = []
+  const refs2 = []
 
-  const playIcons = () => {
-    playerRef.current.playFromBeginning();
-    shareRef.current.playFromBeginning();
+  useEffect(() => [refs], [refs2])
+
+  // Play icons on mouseenter
+  const playIcons = (e, refId, ref2Id) => {
+    console.log(ref2Id)
+    console.log(refId)
+    e.preventDefault()
+
+    // Ref Link Icon
+    if (refId) {
+      refs.map(ref => {
+        refId.current?.playFromBeginning()
+        console.log(ref.current)
+        console.log(refId.current)
+      })
+    }
+
+    // Ref Share Icon
+    if (ref2Id) {
+      refs2.map(ref => {
+        ref2Id.current?.playFromBeginning()
+        console.log(ref.current)
+        console.log(refId.current)
+      })
+    }
   }
 
+  // Capitalize icon title
   const capitalizeText = (text) => {
     if (!text)
       return
@@ -27,26 +50,60 @@ const LinkList = ({data}) => {
       <ul className="sm:w-[70vh] w-[35vh] sm:p-4 p-2">
         {
           data !== undefined ? 
-            data.map((link) => (
-              <div key={link.id}>
-                <li className="my-4 bg-slate-50 w-full p-4 border rounded-2xl shadow-2xl">
-                  <div className={`flex items-center justify-center ${link.title === 'github' ? 'gap-8' : 'gap-4'}`}>
-                    <span className="flex items-center gap-1">
-                      <i className={`${link.icon} colored text-2xl`}></i>
-                      <h2 className="text-2xl">{capitalizeText(link.title)}</h2>
-                    </span>
-                    <div className="flex items-center">
-                      <a href={link.url} target="_blank" onMouseEnter={playIcons} className="cursor-pointer">
-                        <Player ref={playerRef} size={32} icon={LINK}/>
-                      </a>
-                      <a onMouseEnter={playIcons} className="cursor-pointer">
-                        <Player ref={shareRef} size={32} icon={SHARE}/>
-                      </a>
+            data.map((link, index) => {
+
+              // Lord Icon refs
+              refs.push(createRef())
+              refs2.push(createRef())
+
+              return (
+                <div key={link.id}>
+                  <li className="my-4 bg-slate-50 w-full p-4 border rounded-2xl shadow-2xl">
+                    <div className={`flex items-center justify-center ${link.title === 'github' ? 'gap-8' : 'gap-4'}`}>
+
+                      {/* Link Title */}
+                      <span className="flex items-center gap-1">
+                        <i className={`${link.icon} colored text-2xl`}></i>
+                        <h2 className="text-2xl">{capitalizeText(link.title)}</h2>
+                      </span>
+
+                      {/* Links */}
+                      <div className="flex items-center">
+                        {/* Link Icon */}
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          className="cursor-pointer"
+                          onMouseEnter={
+                            (e) => {playIcons(e, refs[index], false)}
+                          }>
+                            <Player
+                              id={link.id}
+                              size={32}
+                              icon={LINK}
+                              ref={refs[index]}
+                            />
+                        </a>
+
+                        {/* Share Icon */}
+                        <a
+                          className="cursor-pointer"
+                          onMouseEnter={
+                            (e) => {playIcons(e, false, refs2[index])}
+                          }>
+                            <Player
+                              id={link.id}
+                              size={32}
+                              icon={SHARE}
+                              ref={refs2[index]}
+                            />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </div>
-            )) : <>
+                  </li>
+                </div>
+              )
+            }) : <>
               <Loading />
             </>
           }
