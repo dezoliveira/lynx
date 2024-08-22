@@ -10,7 +10,7 @@ const LinkList = ({data}) => {
   const refs = []
   const refs2 = []
 
-  useEffect(() => [refs], [refs2])
+  useEffect(() => {[refs], [refs2]})
 
   // Play icons on mouseenter
   const playIcons = (e, refId, ref2Id) => {
