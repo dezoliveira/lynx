@@ -6,7 +6,7 @@ const Hero = () => {
       <div className="bg-slate-50 w-[200px] rounded-full">
         <img src={heroImage} className="w-[100%] object-fill"/>
       </div>
-      <h1 className="text-3xl text-slate-900 font-semibold">Choose your Lynx</h1>
+      <h1 className="text-2xl sm:text-3xl text-slate-900 font-semibold">A Lynx te guiará até mim</h1>
     </div>
   )
 }
