@@ -14,16 +14,12 @@ const LinkList = ({data}) => {
 
   // Play icons on mouseenter
   const playIcons = (e, refId, ref2Id) => {
-    console.log(ref2Id)
-    console.log(refId)
     e.preventDefault()
 
     // Ref Link Icon
     if (refId) {
       refs.map(ref => {
         refId.current?.playFromBeginning()
-        console.log(ref.current)
-        console.log(refId.current)
       })
     }
 
@@ -31,8 +27,6 @@ const LinkList = ({data}) => {
     if (ref2Id) {
       refs2.map(ref => {
         ref2Id.current?.playFromBeginning()
-        console.log(ref.current)
-        console.log(refId.current)
       })
     }
   }
