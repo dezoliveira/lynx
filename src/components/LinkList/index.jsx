@@ -39,6 +39,20 @@ const LinkList = ({data}) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
+  // Copy Link
+  const copyLink = (e, link) => {
+    e.preventDefault()
+    navigator.clipboard.writeText(link)
+
+    alert(
+      `
+        Link copiado para área de tranferência!\n
+        Link: ${link}
+        Agora é só compartilhar 😁\n
+      `
+    )
+  }
+
   return (
     <>
       <ul className="sm:w-[70vh] w-[35vh] sm:p-4 p-2">
@@ -84,7 +98,11 @@ const LinkList = ({data}) => {
                           className="cursor-pointer"
                           onMouseEnter={
                             (e) => {playIcons(e, false, refs2[index])}
-                          }>
+                          }
+                          onClick={
+                            (e) => {copyLink(e, link.url)}
+                          }
+                        >
                             <Player
                               id={link.id}
                               size={32}
