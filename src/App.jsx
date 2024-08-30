@@ -10,7 +10,6 @@ import supabase from './supabaseClient';
 // Components
 import Hero from './components/Hero';
 import LinkList from './components/LinkList';
-import Loading from './components/Loading';
 
 function App() {
   const [ links, setLinks ] = useState()

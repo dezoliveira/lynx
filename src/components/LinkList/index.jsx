@@ -4,11 +4,14 @@ import { useEffect, useState, createRef } from "react"
 import { Player } from '@lordicon/react';
 import LINK from '../../lottie/link.json'
 import SHARE from '../../lottie/share.json'
+
+// Components
 import Loading from "../Loading";
+import Message from '../Message';
 
 const LinkList = ({data}) => {
   const [show, setShow] = useState(false)
-  const [shareText, setShareText] = useState("")
+  const [link, setLink] = useState("")
   const refs = []
   const refs2 = []
 
@@ -45,32 +48,29 @@ const LinkList = ({data}) => {
   const copyLink = (e, link) => {
     e.preventDefault()
     navigator.clipboard.writeText(link)
-    setShow(true)
-    setShareText(link)
-    setTimeout(() => {
-      setShow(false)
-    }, 3000)
+    setLink(link)
+    activeMessage(true)
+  }
+
+  const activeMessage = (active) => {
+    setShow(active)
+  }
+
+  const MessageBody = () => {
+    return (
+      <>
+        <p>Copiado para área de tranferência!</p>
+        <p>{link}</p>
+        <p>Agora é só compartilhar 😁</p>
+      </>
+    )
   }
 
   return (
     <>
-      {
-        show ? <>
-          <div
-            className="
-              fixed bottom-10 right-15
-              sm:bottom-10 sm:right-10 
-              bg-green-500 p-4 shadow-2xl rounded-lg 
-              flex flex-col item-center gap-8"
-            >
-            <p className="text-slate-50 text-lg">
-              Copiado para área de tranferência!<br/>
-              Link: {shareText}<br/>
-              Agora é só compartilhar 😁<br/>
-            </p>
-          </div>
-        </> : ''
-      }
+      <Message activeMessage={activeMessage} show={show} timeOut={3000}>
+        <MessageBody />
+      </Message>
       <ul className="sm:w-[70vh] w-[35vh] sm:p-4 p-2">
         {
           data !== undefined ? 
