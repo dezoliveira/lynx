@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, createRef } from "react"
+import { useEffect, useState, createRef } from "react"
 
 // Lord Icon
 import { Player } from '@lordicon/react';
@@ -7,6 +7,8 @@ import SHARE from '../../lottie/share.json'
 import Loading from "../Loading";
 
 const LinkList = ({data}) => {
+  const [show, setShow] = useState(false)
+  const [shareText, setShareText] = useState("")
   const refs = []
   const refs2 = []
 
@@ -43,18 +45,32 @@ const LinkList = ({data}) => {
   const copyLink = (e, link) => {
     e.preventDefault()
     navigator.clipboard.writeText(link)
-
-    alert(
-      `
-        Link copiado para área de tranferência!\n
-        Link: ${link}
-        Agora é só compartilhar 😁\n
-      `
-    )
+    setShow(true)
+    setShareText(link)
+    setTimeout(() => {
+      setShow(false)
+    }, 3000)
   }
 
   return (
     <>
+      {
+        show ? <>
+          <div
+            className="
+              fixed bottom-10 right-15
+              sm:bottom-10 sm:right-10 
+              bg-green-500 p-4 shadow-2xl rounded-lg 
+              flex flex-col item-center gap-8"
+            >
+            <p className="text-slate-50 text-lg">
+              Copiado para área de tranferência!<br/>
+              Link: {shareText}<br/>
+              Agora é só compartilhar 😁<br/>
+            </p>
+          </div>
+        </> : ''
+      }
       <ul className="sm:w-[70vh] w-[35vh] sm:p-4 p-2">
         {
           data !== undefined ? 
