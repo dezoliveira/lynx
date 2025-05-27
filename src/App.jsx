@@ -3,29 +3,38 @@ import './App.css';
 
 // React
 import { useState, useEffect, Suspense } from 'react';
-
-// Supabase
-import supabase from './supabaseClient';
+import { db } from './lib/firebaseConfig';
+import { collection, getDocs } from "firebase/firestore"
 
 // Components
 import Hero from './components/Hero';
 import LinkList from './components/LinkList';
 
 function App() {
-  const [ links, setLinks ] = useState()
-  const [ error, setError ] = useState()
+  const [ links, setLinks ] = useState([])
+  const [ error, setError ] = useState(null)
 
   useEffect(() => {
-    getLinks()
-    // playIcons()
-  }, []);
+    const fetchLinks = async () => {
 
-  const getLinks = async () => {
-    await new Promise(resolve => setTimeout(resolve, 3000))
-    const { data, error } = await supabase.from("links").select()
-    setLinks(data)
-    setError(error)
-  }
+      try {
+        const query = await getDocs(collection(db, "links"))
+        const data = query.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+      
+        console.log(data)
+        setLinks(data)
+         
+      } catch (error) {
+        console.error("Erro ao buscar links", error)
+        setError(error)
+      }
+    }
+
+    fetchLinks()
+  }, [])
 
   function Loading() {
     return <h2>🌀 Loading...</h2>;
