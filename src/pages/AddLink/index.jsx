@@ -16,7 +16,7 @@ export default function AddLink() {
     <Hero/>
       <form className="flex flex-col gap-[15px] w-[400px] pt-[50px]">
         <div>
-          <h1 className="text-2xl">Cadastrar Links</h1>
+          <h1 className="text-2xl text-center">Cadastrar Links</h1>
         </div>
         <div>
           <label>Titulo:</label>
