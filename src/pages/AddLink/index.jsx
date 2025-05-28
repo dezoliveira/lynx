@@ -1,17 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LinkContainer from "../../components/LinkContainer";
 import Hero from "../../components/Hero";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../lib/firebaseConfig";
 import Message from "../../components/Message";
 
 export default function AddLink() {
+  const [links, setLinks] = useState([])
   const [color, setColor] = useState("ff0000")
   const [title, setTitle] = useState("")
   const [url, setUrl] = useState("")
   const [success, setSuccess] = useState("")
   const [error, setError] = useState(null)
   const [show, setShow] = useState(false)
+  const [maxLinks, setMaxLinks] = useState(false)
+
+  useEffect(() => {
+    const fetchLinks = async () => {
+      try {
+        const query = await getDocs(collection(db, "links"))
+        const data = query.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+      
+        setLinks(data)
+
+          if (data.length >= 5) {
+            setMaxLinks(true)
+            setShow(true)
+
+          } else {
+            setMaxLinks(false)
+            setShow(false)
+          }
+          
+      } catch (error) {
+        console.error("Erro ao buscar links", error)
+        setError(error)
+      }
+    }
+
+    fetchLinks()
+  }, [])
 
   const handleChange = (e) => {
     setColor(e.target.value)
@@ -19,6 +50,7 @@ export default function AddLink() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     try {
       await addDoc(collection(db, 'links'), {
         title,
@@ -44,16 +76,6 @@ export default function AddLink() {
     setShow(active)
   }
 
-  const MessageBody = () => {
-    return (
-      <>
-        <p>Copiado para área de tranferência!</p>
-        <p>{link}</p>
-        <p>Agora é só compartilhar 😁</p>
-      </>
-    )
-  }
-
   return (
     <>
       <LinkContainer>
@@ -75,7 +97,7 @@ export default function AddLink() {
             <input type="color" value={color} onChange={handleChange} className="w-full h-[100px] shadow-md"/>
           </div>
           <div className="text-center">
-            <button type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:opacity-[.9] hover:scale-[1.02] transition-all hover:duration-[.3s] shadow-md rounded-md">Cadastrar</button>
+            <button disabled={maxLinks} type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:cursor-pointer hover:opacity-[.9] hover:scale-[1.02] transition-all hover:duration-[.3s] shadow-md rounded-md">Cadastrar</button>
           </div>
 
           {success && 
@@ -86,6 +108,11 @@ export default function AddLink() {
           {error && 
             <Message activeMessage={activeMessage} show={show} timeOut={3000}>
               { error }
+            </Message>
+          }
+          {maxLinks &&
+            <Message activeMessage={activeMessage} show={show} timeOut={3000}>
+              Numero máximo de links excedido
             </Message>
           }
           
