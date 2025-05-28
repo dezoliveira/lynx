@@ -95,22 +95,6 @@ const LinkList = ({data}) => {
                       <div className="flex items-center">
                         {/* Link Icon */}
                         <a
-                          href={link.url}
-                          target="_blank"
-                          className="cursor-pointer"
-                          onMouseEnter={
-                            (e) => {playIcons(e, refs[index], false)}
-                          }>
-                            <Player
-                              id={link.id}
-                              size={32}
-                              icon={LINK}
-                              ref={refs[index]}
-                            />
-                        </a>
-
-                        {/* Share Icon */}
-                        <a
                           className="cursor-pointer"
                           onMouseEnter={
                             (e) => {playIcons(e, false, refs2[index])}
@@ -122,8 +106,25 @@ const LinkList = ({data}) => {
                             <Player
                               id={link.id}
                               size={32}
-                              icon={SHARE}
+                              icon={LINK}
                               ref={refs2[index]}
+                            />
+                        </a>
+
+                        {/* Share Icon */}
+                        <a
+                          title={"Ir para " + link.title}
+                          href={link.url}
+                          target="_blank"
+                          className="cursor-pointer"
+                          onMouseEnter={
+                            (e) => {playIcons(e, refs[index], false)}
+                          }>
+                            <Player
+                              id={link.id}
+                              size={32}
+                              icon={SHARE}
+                              ref={refs[index]}
                             />
                         </a>
                       </div>
