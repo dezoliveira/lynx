@@ -71,7 +71,7 @@ const LinkList = ({data}) => {
       <Message activeMessage={activeMessage} show={show} timeOut={3000}>
         <MessageBody />
       </Message>
-      <ul className="sm:w-[70vh] w-[35vh] sm:p-4 p-2">
+      <ul className="w-full sm:p-[30px] p-[25px]">
         {
           data !== undefined ? 
             data.map((link, index) => {
@@ -82,7 +82,7 @@ const LinkList = ({data}) => {
 
               return (
                 <div key={link.id}>
-                  <li className="my-4 bg-slate-50 w-full p-4 border rounded-2xl shadow-2xl">
+                  <li className="my-4 text-slate-50 w-full p-4 border rounded-2xl shadow-2xl" style={{ backgroundColor: link.color }}>
                     <div className={`flex items-center justify-center ${link.title === 'github' ? 'gap-8' : 'gap-4'}`}>
 
                       {/* Link Title */}
