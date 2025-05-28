@@ -75,7 +75,7 @@ export default function AddLink() {
             <input type="color" value={color} onChange={handleChange} className="w-full h-[100px] shadow-md"/>
           </div>
           <div className="text-center">
-            <button type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:opacity-[.9] shadow-md rounded-md">Cadastrar</button>
+            <button type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:opacity-[.9] hover:scale-[1.02] transition-all hover:duration-[.3s] shadow-md rounded-md">Cadastrar</button>
           </div>
 
           {success && 
