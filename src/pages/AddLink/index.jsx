@@ -56,6 +56,7 @@ export default function AddLink() {
       await addDoc(collection(db, 'links'), {
         title,
         url,
+        icon,
         color,
         createdAt: Date.now()
       })
@@ -81,10 +82,10 @@ export default function AddLink() {
     <>
       <LinkContainer>
       <Hero/>
-        <form className="flex flex-col sm:p-[0px] p-[25px] gap-[35px] w-[400px] pt-[50px]" onSubmit={handleSubmit}>
-          <div>
-            <h1 className="text-2xl text-center">Cadastrar Links</h1>
-          </div>
+        <div>
+          <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Cadastrar Links</h1>
+        </div>
+        <form className="flex flex-col gap-[35px] p-[25px] w-[400px]" onSubmit={handleSubmit}>
           <div>
             <label>Titulo:</label>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none" />

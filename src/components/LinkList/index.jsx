@@ -71,6 +71,9 @@ const LinkList = ({data}) => {
       <Message activeMessage={activeMessage} show={show} timeOut={3000}>
         <MessageBody />
       </Message>
+      <div>
+        <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Lista de Links</h1>
+      </div>
       <ul className="w-full sm:p-[30px] p-[25px]">
         {
           data !== undefined ? 
@@ -95,6 +98,7 @@ const LinkList = ({data}) => {
                       <div className="flex items-center">
                         {/* Link Icon */}
                         <a
+                          title="Copiar link"
                           className="cursor-pointer"
                           onMouseEnter={
                             (e) => {playIcons(e, false, refs2[index])}
