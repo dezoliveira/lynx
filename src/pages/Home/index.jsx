@@ -11,9 +11,11 @@ import LinkContainer from '../../components/LinkContainer';
 export default function Home() {
   const [ links, setLinks ] = useState([])
   const [ error, setError ] = useState(null)
+  const [ loading, setLoading ] = useState(false)
 
   useEffect(() => {
     const fetchLinks = async () => {
+      setLoading(true)
 
       try {
         const query = await getDocs(collection(db, "links"))
@@ -22,12 +24,13 @@ export default function Home() {
           ...doc.data()
         }))
       
-        console.log(data)
         setLinks(data)
+        setLoading(false)
          
       } catch (error) {
         console.error("Erro ao buscar links", error)
         setError(error)
+        setLoading(false)
       }
     }
 
@@ -35,15 +38,17 @@ export default function Home() {
   }, [])
 
   function Loading() {
-    return <h2>🌀 Loading...</h2>;
+    return <h2 className='text-2xl'>🌀 Loading...</h2>;
   }
 
   return (
     <LinkContainer>
       <Hero /> 
-      <Suspense fallback={<Loading/>}>
+      {!loading ? (
         <LinkList data={links}/>
-      </Suspense>
+      ) : 
+        <Loading />
+      }
     </LinkContainer>
   )
 }
