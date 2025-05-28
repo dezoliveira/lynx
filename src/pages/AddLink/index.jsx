@@ -14,7 +14,7 @@ export default function AddLink() {
   return (
     <LinkContainer>
     <Hero/>
-      <form className="flex flex-col gap-[15px] w-[400px] pt-[50px]">
+      <form className="flex flex-col sm:p-[0px] p-[25px] gap-[25px] w-[400px] pt-[50px]">
         <div>
           <h1 className="text-2xl text-center">Cadastrar Links</h1>
         </div>
