@@ -82,7 +82,7 @@ const LinkList = ({data}) => {
 
               return (
                 <div key={link.id}>
-                  <li className="my-4 text-slate-50 w-full p-4 border rounded-2xl shadow-2xl" style={{ backgroundColor: link.color }}>
+                  <li className="my-4 text-slate-50 w-full border-none p-4 border rounded-lg shadow-md hover:opacity-[.9] hover:cursor-pointer hover:scale-[1.02] transition-all duration-[.5s]" style={{ backgroundColor: link.color }}>
                     <div className={`flex items-center justify-center ${link.title === 'github' ? 'gap-8' : 'gap-4'}`}>
 
                       {/* Link Title */}
