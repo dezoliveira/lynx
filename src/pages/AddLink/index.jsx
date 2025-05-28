@@ -64,18 +64,18 @@ export default function AddLink() {
           </div>
           <div>
             <label>Titulo:</label>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full py-[8px] shadow-md rounded-md" />
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none" />
           </div>
           <div>
             <label>Link:</label>
-            <input type="text" value={url}  onChange={(e) => setUrl(e.target.value)} className="w-full py-[8px] shadow-md rounded-md"/>
+            <input type="text" value={url}  onChange={(e) => setUrl(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none"/>
           </div>
           <div>
             <label>Cor:</label>
             <input type="color" value={color} onChange={handleChange} className="w-full h-[100px] shadow-md"/>
           </div>
           <div className="text-center">
-            <button type="submit" className="px-[15px] py-[10px] bg-slate-950 text-slate-50 hover:opacity-[.9] shadow-md rounded-md">Cadastrar</button>
+            <button type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:opacity-[.9] shadow-md rounded-md">Cadastrar</button>
           </div>
 
           {success && 
