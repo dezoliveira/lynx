@@ -72,6 +72,8 @@ export default function AddLink() {
 
     setTitle("")
     setUrl("")
+    setColor("ff0000")
+    setIcon("")
   }
 
   const activeMessage = (active) => {
