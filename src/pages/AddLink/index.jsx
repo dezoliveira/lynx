@@ -83,7 +83,7 @@ export default function AddLink() {
   return (
     <>
       <LinkContainer>
-      <Hero/>
+        <Hero/>
         <div>
           <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Cadastrar Links</h1>
         </div>

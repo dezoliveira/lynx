@@ -1,20 +1,20 @@
 // React
-import { useState, useEffect, Suspense } from 'react';
+import { useEffect, useState } from "react";
 
 // Firebase
-import { db } from '../../lib/firebaseConfig';
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../lib/firebaseConfig";
 
 // Components
-import Hero from "../../components/Hero"
-import LinkList from "../../components/LinkList"
-import LinkContainer from '../../components/LinkContainer';
-import Loading from '../../components/Loading';
+import Hero from "../../components/Hero";
+import LinkContainer from "../../components/LinkContainer";
+import LinkList from "../../components/LinkList";
+import Loading from "../../components/Loading";
 
-export default function Home() {
-  const [ links, setLinks ] = useState([])
-  const [ error, setError ] = useState(null)
-  const [ loading, setLoading ] = useState(false)
+export default function EditLink() {
+  const [links, setLinks] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchLinks = async () => {
@@ -26,10 +26,10 @@ export default function Home() {
           id: doc.id,
           ...doc.data()
         }))
-      
+
         setLinks(data)
         setLoading(false)
-         
+      
       } catch (error) {
         console.error("Erro ao buscar links", error)
         setError(error)
@@ -42,9 +42,9 @@ export default function Home() {
 
   return (
     <LinkContainer>
-      <Hero /> 
+      <Hero />
       {!loading ? (
-        <LinkList data={links}/>
+        <LinkList data={links} editable={true}/>
       ) : 
         <Loading />
       }

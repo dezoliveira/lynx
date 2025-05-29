@@ -8,8 +8,10 @@ import SHARE from '../../lottie/share.json'
 // Components
 import Loading from "../Loading";
 import Message from '../Message';
+import { useNavigate } from "react-router-dom";
 
-const LinkList = ({data}) => {
+const LinkList = ({ data, editable=false }) => {
+  const navigate = useNavigate()
   const [show, setShow] = useState(false)
   const [link, setLink] = useState("")
   const refs = []
@@ -64,6 +66,11 @@ const LinkList = ({data}) => {
         <p>Agora é só compartilhar 😁</p>
       </>
     )
+  }
+
+  const handleEdit = (id) => {
+    console.log(id)
+    navigate(`/edit/${id}`)
   }
 
   return (
@@ -132,6 +139,17 @@ const LinkList = ({data}) => {
                             />
                         </a>
                       </div>
+                      
+                      { editable && (
+                        <div className="text-end">
+                          <a
+                            onClick={() => handleEdit(link.id)}
+                            className="cursor-pointer"
+                          >
+                            <i className="fa fa-edit" style={{ fontSize: '32px' }}></i>
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </li>
                 </div>
