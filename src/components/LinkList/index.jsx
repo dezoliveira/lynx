@@ -93,16 +93,14 @@ const LinkList = ({ data, editable=false }) => {
               return (
                 <div key={link.id}>
                   <li className="my-4 text-slate-50 w-full border-none p-4 border rounded-lg shadow-md hover:opacity-[.9] hover:cursor-pointer hover:scale-[1.02] transition-all duration-[.5s]" style={{ backgroundColor: link.color }}>
-                    <div className={`flex items-center justify-center ${link.title === 'github' ? 'gap-8' : 'gap-4'}`}>
-
-                      {/* Link Title */}
-                      <span className="flex items-center gap-1">
-                        <i className={`${link.icon} colored text-2xl`}></i>
-                        <h2 className="text-2xl">{capitalizeText(link.title)}</h2>
-                      </span>
-
+                    <div className={`flex items-center justify-between ${link.title === 'github' ? 'gap-8' : 'gap-4'}`}>
                       {/* Links */}
-                      <div className="flex items-center">
+                      <div className="flex items-center justify-center w-full">
+                        {/* Link Title */}
+                        <span className="flex items-center gap-1">
+                          <i className={`${link.icon} colored text-2xl`}></i>
+                          <h2 className="text-2xl">{capitalizeText(link.title)}</h2>
+                        </span>
                         {/* Link Icon */}
                         <a
                           title="Copiar link"
@@ -114,12 +112,12 @@ const LinkList = ({ data, editable=false }) => {
                             (e) => {copyLink(e, link.url)}
                           }
                         >
-                            <Player
-                              id={link.id}
-                              size={32}
-                              icon={LINK}
-                              ref={refs2[index]}
-                            />
+                          <Player
+                            id={link.id}
+                            size={32}
+                            icon={LINK}
+                            ref={refs2[index]}
+                          />
                         </a>
 
                         {/* Share Icon */}
@@ -139,7 +137,6 @@ const LinkList = ({ data, editable=false }) => {
                             />
                         </a>
                       </div>
-                      
                       { editable && (
                         <div className="text-end">
                           <a
