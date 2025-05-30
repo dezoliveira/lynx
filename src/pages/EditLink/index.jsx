@@ -11,6 +11,7 @@ import LinkContainer from "../../components/LinkContainer";
 import LinkList from "../../components/LinkList";
 import Loading from "../../components/Loading";
 import { useNavigate } from "react-router-dom";
+import NavigateButton from "../../components/NavigateButton";
 
 export default function EditLink() {
   const navigate = useNavigate()
@@ -44,13 +45,7 @@ export default function EditLink() {
 
   return (
     <>
-      <div
-        className="flex items-center gap-[5px] text-slate-50 absolute top-[20px] left-[20px] hover:cursor-pointer hover:opacity-[.9]"
-        onClick={() => navigate('/')}
-      >
-        <i className="fa-solid fa-arrow-left"></i>
-        Voltar
-      </div>
+      <NavigateButton link="/" text="Voltar"/>
       <LinkContainer>
         <Hero />
         {!loading ? (

@@ -12,6 +12,7 @@ import LinkContainer from "../../../../components/LinkContainer"
 import Hero from "../../../../components/Hero"
 import Loading from "../../../../components/Loading"
 import Message from "../../../../components/Message"
+import NavigateButton from "../../../../components/NavigateButton"
 
 export default function EditLinkForm() {
   const { id } = useParams()
@@ -82,13 +83,7 @@ export default function EditLinkForm() {
 
   return (
     <>
-      <div
-        className="flex items-center gap-[5px] text-slate-50 absolute top-[20px] left-[20px] hover:cursor-pointer hover:opacity-[.9]"
-        onClick={() => navigate('/edit')}
-      >
-        <i className="fa-solid fa-arrow-left"></i>
-        Voltar
-      </div>
+      <NavigateButton link="/edit" text="Voltar"/>
       <LinkContainer>
         <Hero />
         {
