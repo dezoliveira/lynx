@@ -79,7 +79,9 @@ const LinkList = ({ data, editable=false }) => {
         <MessageBody />
       </Message>
       <div>
-        <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Lista de Links</h1>
+        <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">
+          {editable ? 'Editar Links' : 'Lista de Links'}
+        </h1>
       </div>
       <ul className="w-full sm:p-[30px] p-[25px]">
         {
@@ -97,7 +99,7 @@ const LinkList = ({ data, editable=false }) => {
                       {/* Links */}
                       <div className="flex items-center justify-center w-full">
                         {/* Link Title */}
-                        <span className="flex items-center gap-1">
+                        <span className="flex items-center justify-center w-full gap-1">
                           <i className={`${link.icon} colored text-2xl`}></i>
                           <h2 className="text-2xl">{capitalizeText(link.title)}</h2>
                         </span>
@@ -143,7 +145,7 @@ const LinkList = ({ data, editable=false }) => {
                             onClick={() => handleEdit(link.id)}
                             className="cursor-pointer"
                           >
-                            <i className="fa fa-edit" style={{ fontSize: '32px' }}></i>
+                            <i className="fa fa-edit" style={{ fontSize: '28px' }}></i>
                           </a>
                         </div>
                       )}

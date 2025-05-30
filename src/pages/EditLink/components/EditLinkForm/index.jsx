@@ -94,7 +94,7 @@ export default function EditLinkForm() {
         {
           !loading ? <>
             <div>
-              <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Editar Links</h1>
+              <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Editar Link</h1>
             </div>
             <form className="flex flex-col gap-[35px] p-[25px] w-[400px]" onSubmit={handleSubmit}>
               <div>
