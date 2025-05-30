@@ -5,7 +5,7 @@ export default function NavigateButton({ link='/', text }) {
   
   return (
     <div
-      className="flex items-center gap-[5px] text-slate-50 absolute top-[20px] left-[20px] hover:cursor-pointer hover:opacity-[.9]"
+      className="flex items-center gap-[5px] text-slate-50 absolute top-[20px] left-[20px] hover:cursor-pointer hover:opacity-[.9] z-10"
       onClick={() => navigate(`${link}`)}
     >
       <i className="fa-solid fa-arrow-left"></i>
