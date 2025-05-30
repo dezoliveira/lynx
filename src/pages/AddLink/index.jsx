@@ -7,6 +7,7 @@ import LinkContainer from "../../components/LinkContainer";
 import Hero from "../../components/Hero";
 import Message from "../../components/Message";
 import { useNavigate } from "react-router-dom";
+import NavigateButton from "../../components/NavigateButton";
 
 export default function AddLink() {
   const navigate = useNavigate()
@@ -86,13 +87,7 @@ export default function AddLink() {
 
   return (
     <>
-      <div
-        className="flex items-center gap-[5px] text-slate-50 absolute top-[20px] left-[20px] hover:cursor-pointer hover:opacity-[.9]"
-        onClick={() => navigate('/')}
-      >
-        <i className="fa-solid fa-arrow-left"></i>
-        Voltar
-      </div>
+      <NavigateButton link={'/'} text="Voltar"/>
       <LinkContainer>
         <Hero/>
         <div>
