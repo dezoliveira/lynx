@@ -1,18 +1,17 @@
 // React
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Navigate } from "react-router-dom"
 
 // Firebase
 import { doc, getDoc, updateDoc } from "firebase/firestore"
-import { db } from "../../../../lib/firebaseConfig"
+import { db } from "../../../../../lib/firebaseConfig"
 
 // Components
-import LinkContainer from "../../../../components/LinkContainer"
-import Hero from "../../../../components/Hero"
-import Loading from "../../../../components/Loading"
-import Message from "../../../../components/Message"
-import NavigateButton from "../../../../components/NavigateButton"
+import LinkContainer from "../../../../../components/LinkContainer"
+import Hero from "../../../../../components/Hero"
+import Loading from "../../../../../components/Loading"
+import Message from "../../../../../components/Message"
+import NavigateButton from "../../../../../components/NavigateButton"
 
 export default function EditLinkForm() {
   const { id } = useParams()
@@ -67,7 +66,7 @@ export default function EditLinkForm() {
       setShow(true)
 
       setTimeout(() => {
-        navigate('/edit')
+        navigate('/admin/edit')
       }, 2000);
     }
 
@@ -83,7 +82,7 @@ export default function EditLinkForm() {
 
   return (
     <>
-      <NavigateButton link="/edit" text="Voltar"/>
+      <NavigateButton link="/admin/edit" text="Voltar"/>
       <LinkContainer>
         <Hero />
         {

@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 
 // Firebase
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../lib/firebaseConfig";
+import { db } from "../../../lib/firebaseConfig";
 
 // Components
-import Hero from "../../components/Hero";
-import LinkContainer from "../../components/LinkContainer";
-import LinkList from "../../components/LinkList";
-import Loading from "../../components/Loading";
+import Hero from "../../../components/Hero";
+import LinkContainer from "../../../components/LinkContainer";
+import LinkList from "../../../components/LinkList";
+import Loading from "../../../components/Loading";
 import { useNavigate } from "react-router-dom";
-import NavigateButton from "../../components/NavigateButton";
+import NavigateButton from "../../../components/NavigateButton";
 
 export default function EditLink() {
   const navigate = useNavigate()

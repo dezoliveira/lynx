@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db } from "../../lib/firebaseConfig";
+import { db } from "../../../lib/firebaseConfig";
 
-import LinkContainer from "../../components/LinkContainer";
-import Hero from "../../components/Hero";
-import Message from "../../components/Message";
+import LinkContainer from "../../../components/LinkContainer";
+import Hero from "../../../components/Hero";
+import Message from "../../../components/Message";
 import { useNavigate } from "react-router-dom";
-import NavigateButton from "../../components/NavigateButton";
+import NavigateButton from "../../../components/NavigateButton";
 
 export default function AddLink() {
   const navigate = useNavigate()

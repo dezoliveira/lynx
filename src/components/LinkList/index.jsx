@@ -70,7 +70,7 @@ const LinkList = ({ data, editable=false }) => {
 
   const handleEdit = (id) => {
     console.log(id)
-    navigate(`/edit/${id}`)
+    navigate(`/admin/edit/${id}`)
   }
 
   return (
