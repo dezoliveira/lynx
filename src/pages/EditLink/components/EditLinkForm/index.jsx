@@ -1,13 +1,22 @@
-import { doc, getDoc } from "firebase/firestore"
+// React
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import { Navigate } from "react-router-dom"
+
+// Firebase
+import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from "../../../../lib/firebaseConfig"
+
+// Components
 import LinkContainer from "../../../../components/LinkContainer"
 import Hero from "../../../../components/Hero"
 import Loading from "../../../../components/Loading"
+import Message from "../../../../components/Message"
 
 export default function EditLinkForm() {
   const { id } = useParams()
+  const navigate = useNavigate()
+
   const [title, setTitle] = useState("")
   const [url, setUrl] = useState("")
   const [icon, setIcon] = useState("")
@@ -15,6 +24,7 @@ export default function EditLinkForm() {
   const [loading, setLoading] = useState(true)
   const [success, setSuccess] = useState("")
   const [error, setError] = useState(null)
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     const fetchLink = async () => {
@@ -39,8 +49,35 @@ export default function EditLinkForm() {
     setColor(e.target.value)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
+    const ref = doc(db, "links", id)
+
+    try {
+      await updateDoc(ref, {
+        title,
+        url,
+        icon,
+        color
+      })
+
+      setSuccess("Link editado com sucesso!")
+      setShow(true)
+
+      setTimeout(() => {
+        navigate('/edit')
+      }, 2000);
+    }
+
+    catch (error) {
+      setError("Erro ao editar link" + error.message)
+      setShow(true)
+    }
+  }
+
+  const activeMessage = (active) => {
+    setShow(active)
   }
 
   return (
