@@ -6,8 +6,10 @@ import { db } from "../../lib/firebaseConfig";
 import LinkContainer from "../../components/LinkContainer";
 import Hero from "../../components/Hero";
 import Message from "../../components/Message";
+import { useNavigate } from "react-router-dom";
 
 export default function AddLink() {
+  const navigate = useNavigate()
   const [links, setLinks] = useState([])
   const [color, setColor] = useState("ff0000")
   const [title, setTitle] = useState("")
@@ -84,6 +86,13 @@ export default function AddLink() {
 
   return (
     <>
+      <div
+        className="flex items-center gap-[5px] text-slate-50 absolute top-[20px] left-[20px] hover:cursor-pointer hover:opacity-[.9]"
+        onClick={() => navigate('/')}
+      >
+        <i className="fa-solid fa-arrow-left"></i>
+        Voltar
+      </div>
       <LinkContainer>
         <Hero/>
         <div>
