@@ -7,14 +7,14 @@ import Loading from "../../../../../components/Loading"
 import Message from "../../../../../components/Message"
 import NavigateButton from "../../../../../components/NavigateButton"
 import { useLink } from "../../../../../hooks/useLink"
+import { useUpdateLink } from "../../../../../hooks/useUpdateLink"
 
 export default function EditLinkForm() {
   const navigate = useNavigate()
 
   const { id } = useParams()
-  const { title, url, icon, color, loading, fetchLink } = useLink(id)
-  const [success, setSuccess] = useState("")
-  const [error, setError] = useState(null)
+  const { title, url, icon, color, loading: loadingLinks, fetchLink } = useLink(id)
+  const { loading, success, error, updateLink } = useUpdateLink()
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -27,28 +27,16 @@ export default function EditLinkForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    await updateLink({ title, url, icon, color })
 
-    const ref = doc(db, "links", id)
+    setShow(true)
 
-    try {
-      await updateDoc(ref, {
-        title,
-        url,
-        icon,
-        color
-      })
-
-      setSuccess("Link editado com sucesso!")
-      setShow(true)
+    if (success) {
 
       setTimeout(() => {
         navigate('/admin/edit')
       }, 2000);
-    }
-
-    catch (error) {
-      setError("Erro ao editar link" + error.message)
-      setShow(true)
     }
   }
 
@@ -60,7 +48,7 @@ export default function EditLinkForm() {
     <>
       <NavigateButton link="/admin/edit" text="Voltar"/>
       {
-        !loading ? <>
+        !loadingLinks ? <>
           <div>
             <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Editar Link</h1>
           </div>
