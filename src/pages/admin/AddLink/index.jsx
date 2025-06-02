@@ -1,54 +1,39 @@
 import { useEffect, useState } from "react";
 
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../lib/firebaseConfig";
 
-import LinkContainer from "../../../components/LinkContainer";
-import Hero from "../../../components/Hero";
 import Message from "../../../components/Message";
 import { useNavigate } from "react-router-dom";
 import NavigateButton from "../../../components/NavigateButton";
+import { useFetchLinks } from "../../../hooks/useFetchLinks";
 
 export default function AddLink() {
   const navigate = useNavigate()
-  const [links, setLinks] = useState([])
+  const {links, loading, error, fetchLinks} = useFetchLinks()
+
   const [color, setColor] = useState("ff0000")
   const [title, setTitle] = useState("")
   const [url, setUrl] = useState("")
   const [icon, setIcon] = useState("")
   const [success, setSuccess] = useState("")
-  const [error, setError] = useState(null)
   const [show, setShow] = useState(false)
   const [maxLinks, setMaxLinks] = useState(false)
 
   useEffect(() => {
-    const fetchLinks = async () => {
-      try {
-        const query = await getDocs(collection(db, "links"))
-        const data = query.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-      
-        setLinks(data)
-
-          if (data.length >= 5) {
-            setMaxLinks(true)
-            setShow(true)
-
-          } else {
-            setMaxLinks(false)
-            setShow(false)
-          }
-          
-      } catch (error) {
-        console.error("Erro ao buscar links", error)
-        setError(error)
-      }
-    }
-
     fetchLinks()
   }, [])
+
+  useEffect(() => {
+    if (links.length >= 5) {
+      setMaxLinks(true)
+      setShow(true)
+
+    } else {
+      setMaxLinks(false)
+      setShow(false)
+    }
+  }, [links])
 
   const handleChange = (e) => {
     setColor(e.target.value)

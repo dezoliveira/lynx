@@ -1,38 +1,18 @@
-import { collection, getDocs } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { db } from "../../../lib/firebaseConfig"
+import { useFetchLinks } from "../../../hooks/useFetchLinks"
 
 export default function Dashboard() {
-  const [links, setLinks] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const {links, loading, error, fetchLinks} = useFetchLinks()
   const [lastDate, setLastDate] = useState(null)
 
   useEffect(() => {
-    const fetchLinks = async () => {
-      setLoading(true)
+    fetchLinks()
+  })
 
-      try {
-        const query = await getDocs(collection(db, "links"))
-        const data = query.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-
-        setLinks(data)
-        getDateInfo(data)
-        setLoading(false)
-
-      } catch (error) {
-        console.error("Erro ao buscar links", error)
-        setError("Erro ao carregar as informações de usuário" + Error)
-        setLoading(false)
-      }
-    }
-
-    const getDateInfo = (data) => {
-      const getCreatedAt = data.map(link => link.createdAt)
+  useEffect(() => {
+    const getDateInfo = () => {
+      const getCreatedAt = links.map(link => link.createdAt)
       const orderedCreatedAt = getCreatedAt.sort((a, b) => a - b)
       const latest = orderedCreatedAt[orderedCreatedAt.length - 1]
 
@@ -46,8 +26,8 @@ export default function Dashboard() {
       }
     }
 
-    fetchLinks()
-  }, [lastDate])
+    getDateInfo()
+  }, [links])
   
   return (
     <div className="flex flex-col gap-[25px] h-full w-full p-[50px]">
