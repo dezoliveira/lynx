@@ -27,5 +27,16 @@ export function useLink(id) {
     setLoading(false)
   }
 
-  return { title, url, icon, color, loading, fetchLink }
+  return { 
+    title,
+    setTitle,
+    url,
+    setUrl,
+    icon,
+    setIcon,
+    color,
+    setColor,
+    loading,
+    fetchLink
+  }
 }

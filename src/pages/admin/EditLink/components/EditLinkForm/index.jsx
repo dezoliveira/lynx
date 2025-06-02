@@ -13,13 +13,35 @@ export default function EditLinkForm() {
   const navigate = useNavigate()
 
   const { id } = useParams()
-  const { title, url, icon, color, loading: loadingLinks, fetchLink } = useLink(id)
-  const { loading, success, error, updateLink } = useUpdateLink()
+
+  const { 
+    title,
+    setTitle,
+    url,
+    setUrl,
+    icon,
+    setIcon,
+    color,
+    setColor,
+    loading: loadingLinks,
+    fetchLink
+  } = useLink(id)
+  
+  const { loading, success, error, updateLink } = useUpdateLink(id)
   const [show, setShow] = useState(false)
 
   useEffect(() => {
     fetchLink()
   }, [id])
+
+  useEffect(() => {
+    if (success) {
+      setTimeout(() => {
+        navigate('/admin/edit')
+      }, 2000);
+    }
+
+  }, [success])
 
   const handleChange = (e) => {
     setColor(e.target.value)
@@ -29,15 +51,7 @@ export default function EditLinkForm() {
     e.preventDefault()
     
     await updateLink({ title, url, icon, color })
-
     setShow(true)
-
-    if (success) {
-
-      setTimeout(() => {
-        navigate('/admin/edit')
-      }, 2000);
-    }
   }
 
   const activeMessage = (active) => {

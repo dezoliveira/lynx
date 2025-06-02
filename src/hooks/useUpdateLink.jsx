@@ -22,11 +22,13 @@ export function useUpdateLink(id) {
 
       setSuccess("Link editado com sucesso!")
       setLoading(false)
+      return true
     }
 
     catch (error) {
       setError("Erro ao editar link" + error.message)
       setLoading(false)
+      return false
     }
   }
 
