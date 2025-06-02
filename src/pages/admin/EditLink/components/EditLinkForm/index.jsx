@@ -83,50 +83,47 @@ export default function EditLinkForm() {
   return (
     <>
       <NavigateButton link="/admin/edit" text="Voltar"/>
-      <LinkContainer>
-        <Hero />
-        {
-          !loading ? <>
+      {
+        !loading ? <>
+          <div>
+            <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Editar Link</h1>
+          </div>
+          <form className="flex flex-col gap-[35px] p-[25px] w-[400px]" onSubmit={handleSubmit}>
             <div>
-              <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Editar Link</h1>
+              <label>Titulo:</label>
+              <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none" />
             </div>
-            <form className="flex flex-col gap-[35px] p-[25px] w-[400px]" onSubmit={handleSubmit}>
-              <div>
-                <label>Titulo:</label>
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none" />
+            <div>
+              <label>Link:</label>
+              <input type="text" value={url}  onChange={(e) => setUrl(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none"/>
+            </div>
+            <div className="flex justify-between gap-[25px]">
+              <div className="w-full">
+                <label>Icone:</label>
+                <input type="text" value={icon}  onChange={(e) => setIcon(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none"/>
               </div>
-              <div>
-                <label>Link:</label>
-                <input type="text" value={url}  onChange={(e) => setUrl(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none"/>
-              </div>
-              <div className="flex justify-between gap-[25px]">
-                <div className="w-full">
-                  <label>Icone:</label>
-                  <input type="text" value={icon}  onChange={(e) => setIcon(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none"/>
-                </div>
-                <div className="w-[80px]">
-                  <label>Cor:</label>
-                  <input type="color" value={color} onChange={handleChange} className="h-[40px] w-full shadow-md"/>
-                </div>  
-              </div>
-              <div className="text-center mt-4">
-                <button type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:cursor-pointer hover:opacity-[.9] hover:scale-[1.02] transition-all hover:duration-[.3s] shadow-md rounded-md">Salvar Alterações</button>
-              </div>
+              <div className="w-[80px]">
+                <label>Cor:</label>
+                <input type="color" value={color} onChange={handleChange} className="h-[40px] w-full shadow-md"/>
+              </div>  
+            </div>
+            <div className="text-center mt-4">
+              <button type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:cursor-pointer hover:opacity-[.9] hover:scale-[1.02] transition-all hover:duration-[.3s] shadow-md rounded-md">Salvar Alterações</button>
+            </div>
 
-              {success && 
-                <Message activeMessage={activeMessage} show={show} timeOut={3000}>
-                  { success }
-                </Message>
-              }
-              {error && 
-                <Message activeMessage={activeMessage} show={show} timeOut={3000}>
-                  { error }
-                </Message>
-              }      
-            </form>
-          </> : <Loading />
-        }
-      </LinkContainer>
+            {success && 
+              <Message activeMessage={activeMessage} show={show} timeOut={3000}>
+                { success }
+              </Message>
+            }
+            {error && 
+              <Message activeMessage={activeMessage} show={show} timeOut={3000}>
+                { error }
+              </Message>
+            }      
+          </form>
+        </> : <Loading />
+      }
     </>
   )
 }

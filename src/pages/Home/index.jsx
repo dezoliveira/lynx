@@ -41,13 +41,12 @@ export default function Home() {
   }, [])
 
   return (
-    <LinkContainer>
-      <Hero /> 
+    <>
       {!loading ? (
         <LinkList data={links}/>
       ) : 
         <Loading />
       }
-    </LinkContainer>
+    </>
   )
 }
