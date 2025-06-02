@@ -2,46 +2,22 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
-// Firebase
-import { doc, getDoc, updateDoc } from "firebase/firestore"
-import { db } from "../../../../../lib/firebaseConfig"
-
 // Components
-import LinkContainer from "../../../../../components/LinkContainer"
-import Hero from "../../../../../components/Hero"
 import Loading from "../../../../../components/Loading"
 import Message from "../../../../../components/Message"
 import NavigateButton from "../../../../../components/NavigateButton"
+import { useLink } from "../../../../../hooks/useLink"
 
 export default function EditLinkForm() {
-  const { id } = useParams()
   const navigate = useNavigate()
 
-  const [title, setTitle] = useState("")
-  const [url, setUrl] = useState("")
-  const [icon, setIcon] = useState("")
-  const [color, setColor] = useState("#f0000")
-  const [loading, setLoading] = useState(true)
+  const { id } = useParams()
+  const { title, url, icon, color, loading, fetchLink } = useLink(id)
   const [success, setSuccess] = useState("")
   const [error, setError] = useState(null)
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    const fetchLink = async () => {
-      const ref = doc(db, "links", id)
-      const docSnap = await getDoc(ref)
-
-      if (docSnap.exists()) {
-        const data = docSnap.data()
-        setTitle(data.title || '')
-        setUrl(data.url || '')
-        setColor(data.color || "#00000")
-        setIcon(data.icon || '')
-      }
-
-      setLoading(false)
-    }
-
     fetchLink()
   }, [id])
 
