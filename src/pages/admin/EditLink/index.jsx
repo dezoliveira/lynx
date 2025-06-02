@@ -45,15 +45,12 @@ export default function EditLink() {
 
   return (
     <>
-      <NavigateButton link="/" text="Voltar"/>
-      <LinkContainer>
-        <Hero />
-        {!loading ? (
-          <LinkList data={links} editable={true}/>
-        ) : 
-          <Loading />
-        }
-      </LinkContainer>
+      <NavigateButton link="/admin" text="Voltar"/>
+      {!loading ? (
+        <LinkList data={links} editable={true}/>
+      ) : 
+        <Loading />
+      }
     </>
   )
 }
