@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import AddLink from './pages/admin/AddLink'
 import EditLink from './pages/admin/EditLink'
@@ -9,7 +9,8 @@ import AdminLayout from './components/AdminLayout'
 
 export default function AppRoutes() {
   return (
-    <Routes>
+    <Router>
+      <Routes>
       {/* Public route */}
       <Route path='/' element={
         <Layout>
@@ -49,5 +50,6 @@ export default function AppRoutes() {
         } />
       </Route>
     </Routes>
+    </Router>
   )
 }
