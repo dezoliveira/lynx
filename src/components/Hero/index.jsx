@@ -6,6 +6,7 @@ const Hero = () => {
       <div className="bg-slate-50 w-[200px] rounded-full">
         <img src={heroImage} className="w-[100%] object-fill"/>
       </div>
+      <h1>test</h1>
     </div>
   )
 }
