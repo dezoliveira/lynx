@@ -1,0 +1,6 @@
+.loadingContainer {
+  @apply
+    flex
+    items-center
+    justify-center
+}
