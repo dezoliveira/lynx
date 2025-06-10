@@ -1,0 +1,43 @@
+.pageLink {
+  @apply
+    text-2xl
+    text-center
+    bg-purple-500
+    text-slate-50
+    p-[8px]
+    rounded-lg
+    shadow-lg
+}
+
+.addForm {
+  @apply
+    flex
+    flex-col
+    gap-[35px]
+    p-[25px]
+    w-[400px]
+}
+
+.formInput {
+  @apply
+    w-full
+    py-[8px]
+    shadow-md
+    rounded-md
+    p-4
+    focus:outline-none
+}
+
+.formDetails {
+  @apply
+    flex
+    justify-between
+    gap-[25px]
+}
+
+.colorInput {
+  @apply
+    h-[40px]
+    w-full
+    shadow-md
+}
