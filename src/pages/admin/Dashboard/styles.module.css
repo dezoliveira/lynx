@@ -1,0 +1,24 @@
+.dashboardContainer {
+  @apply
+    flex
+    flex-col
+    gap-[25px]
+    h-full
+    w-full
+    p-[50px]
+}
+
+.dashboardContent {
+  @apply
+    flex
+    flex-col
+}
+
+.dashboardLinks {
+  @apply
+    flex
+    gap-[10px]
+    items-center
+    justify-center
+    my-[25px]
+}

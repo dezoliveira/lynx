@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useFetchLinks } from "../../../hooks/useFetchLinks"
 
+import styles from './styles.module.css'
+
 export default function Dashboard() {
   const {links, loading, error, fetchLinks} = useFetchLinks()
   const [lastDate, setLastDate] = useState(null)
@@ -30,13 +32,13 @@ export default function Dashboard() {
   }, [links])
   
   return (
-    <div className="flex flex-col gap-[25px] h-full w-full p-[50px]">
+    <div className={styles.dashboardContainer}>
       <h1>Bem-vindo, Admin!</h1>
-      <div className="flex flex-col">
+      <div className={styles.dashboardContent}>
         <span>Você tem {links?.length} links ativos.</span>
         <span>Última edição feita {lastDate}.</span>
       </div>
-      <div className="flex gap-[10px] items-center justify-center my-[25px]">
+      <div className={styles.dashboardLinks}>
         <Link to="/admin/edit">
           <button className="bg-blue-500 text-slate-50 py-[8px] shadow-lg rounded-md px-[12px]">Ver Links</button>
         </Link>

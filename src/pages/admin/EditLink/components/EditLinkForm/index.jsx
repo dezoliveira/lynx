@@ -9,6 +9,8 @@ import NavigateButton from "../../../../../components/NavigateButton"
 import { useLink } from "../../../../../hooks/useLink"
 import { useUpdateLink } from "../../../../../hooks/useUpdateLink"
 
+import styles from '../../../styles.module.css'
+
 export default function EditLinkForm() {
   const navigate = useNavigate()
 
@@ -64,25 +66,25 @@ export default function EditLinkForm() {
       {
         !loadingLinks ? <>
           <div>
-            <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">Editar Link</h1>
+            <h1 className={styles.pageLink}>Editar Link</h1>
           </div>
-          <form className="flex flex-col gap-[35px] p-[25px] w-[400px]" onSubmit={handleSubmit}>
+          <form  className={styles.form} onSubmit={handleSubmit}>
             <div>
               <label>Titulo:</label>
-              <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none" />
+              <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className={styles.formInput} />
             </div>
             <div>
               <label>Link:</label>
-              <input type="text" value={url}  onChange={(e) => setUrl(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none"/>
+              <input type="text" value={url}  onChange={(e) => setUrl(e.target.value)} className={styles.formInput}/>
             </div>
             <div className="flex justify-between gap-[25px]">
               <div className="w-full">
                 <label>Icone:</label>
-                <input type="text" value={icon}  onChange={(e) => setIcon(e.target.value)} className="w-full py-[8px] shadow-md rounded-md p-4 focus:outline-none"/>
+                <input type="text" value={icon}  onChange={(e) => setIcon(e.target.value)} className={styles.formInput}/>
               </div>
               <div className="w-[80px]">
                 <label>Cor:</label>
-                <input type="color" value={color} onChange={handleChange} className="h-[40px] w-full shadow-md"/>
+                <input type="color" value={color} onChange={handleChange} className={styles.colorInput}/>
               </div>  
             </div>
             <div className="text-center mt-4">

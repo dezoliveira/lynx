@@ -9,7 +9,7 @@
     shadow-lg
 }
 
-.addForm {
+.form {
   @apply
     flex
     flex-col

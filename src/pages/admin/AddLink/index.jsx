@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import NavigateButton from "../../../components/NavigateButton";
 import { useFetchLinks } from "../../../hooks/useFetchLinks";
 
-import styles from './styles.module.css'
+import styles from '../styles.module.css'
 
 export default function AddLink() {
   const navigate = useNavigate()
@@ -78,7 +78,7 @@ export default function AddLink() {
       <div>
         <h1 className={styles.pageLink}>Cadastrar Links</h1>
       </div>
-      <form className={styles.addForm} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div>
           <label>Titulo:</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className={styles.formInput} />
