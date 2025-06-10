@@ -1,0 +1,64 @@
+.pageTitle {
+  @apply
+    text-2xl
+    text-center
+    bg-purple-500
+    text-slate-50
+    p-[8px]
+    rounded-lg
+    shadow-lg
+}
+
+.linkList {
+  @apply
+    w-full
+    sm:p-[30px]
+    p-[25px]
+}
+
+.listItem {
+  @apply
+    my-4
+    text-slate-50
+    w-full
+    border-none
+    p-4
+    border
+    rounded-lg
+    shadow-md
+    hover:opacity-[.9]
+    hover:cursor-pointer
+    hover:scale-[1.02]
+    transition-all
+    duration-[.5s]
+}
+
+.listItemContent {
+  @apply
+    flex
+    items-center
+    justify-between
+    gap-4
+}
+
+.links {
+  @apply
+    flex
+    items-center
+    justify-center
+    w-full
+}
+
+.linkTitle {
+  @apply
+    flex
+    items-center
+    justify-center
+    w-full
+    gap-1
+}
+
+.actionLinks {
+  @apply
+    text-end
+}

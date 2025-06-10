@@ -10,6 +10,9 @@ import Loading from "../Loading";
 import Message from '../Message';
 import { useNavigate } from "react-router-dom";
 
+// Styles
+import styles from './styles.module.css'
+
 const LinkList = ({ data, editable=false }) => {
   const navigate = useNavigate()
   const [show, setShow] = useState(false)
@@ -79,11 +82,11 @@ const LinkList = ({ data, editable=false }) => {
         <MessageBody />
       </Message>
       <div>
-        <h1 className="text-2xl text-center bg-purple-500 text-slate-50 p-[8px] rounded-lg shadow-lg">
+        <h1 className={styles.pageTitle}>
           {editable ? 'Editar Links' : 'Lista de Links'}
         </h1>
       </div>
-      <ul className="w-full sm:p-[30px] p-[25px]">
+      <ul className={styles.linkList}>
         {
           data !== undefined ? 
             data.map((link, index) => {
@@ -94,12 +97,12 @@ const LinkList = ({ data, editable=false }) => {
 
               return (
                 <div key={link.id}>
-                  <li className="my-4 text-slate-50 w-full border-none p-4 border rounded-lg shadow-md hover:opacity-[.9] hover:cursor-pointer hover:scale-[1.02] transition-all duration-[.5s]" style={{ backgroundColor: link.color }}>
-                    <div className={`flex items-center justify-between ${link.title === 'github' ? 'gap-8' : 'gap-4'}`}>
+                  <li className={styles.listItem} style={{ backgroundColor: link.color }}>
+                    <div className={styles.listItemContent}>
                       {/* Links */}
-                      <div className="flex items-center justify-center w-full">
+                      <div className={styles.links}>
                         {/* Link Title */}
-                        <span className="flex items-center justify-center w-full gap-1">
+                        <span className={styles.linkTitle}>
                           <i className={`${link.icon} colored text-2xl`}></i>
                           <h2 className="text-2xl">{capitalizeText(link.title)}</h2>
                         </span>
@@ -140,7 +143,7 @@ const LinkList = ({ data, editable=false }) => {
                         </a>
                       </div>
                       { editable && (
-                        <div className="text-end">
+                        <div className={styles.actionLinks}>
                           <a
                             onClick={() => handleEdit(link.id)}
                             className="cursor-pointer"
