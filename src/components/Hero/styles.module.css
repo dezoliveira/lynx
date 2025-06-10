@@ -1,0 +1,22 @@
+.heroContainer {
+  @apply
+    absolute
+    top-[60px]
+    flex
+    flex-col
+    items-center
+    justify-center gap-4
+}
+
+.heroContent {
+  @apply
+    bg-slate-50
+    w-[200px]
+    rounded-full
+}
+
+.heroImage {
+  @apply
+    w-[100%]
+    object-fill
+}

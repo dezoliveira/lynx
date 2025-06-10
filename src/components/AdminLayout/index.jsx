@@ -7,7 +7,7 @@ import styles from './styles.module.css'
 
 export default function AdminLayout() {
   return (
-    <div className={styles.container}>
+    <div className={styles.adminContainer}>
       <header className={styles.header}>
         <nav className={styles.navbar}>
           <Link to="/">Home</Link>
