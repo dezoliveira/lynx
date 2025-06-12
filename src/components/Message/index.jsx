@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-const Message = ({ show, activeMessage, children, timeOut }) => {
+const Message = ({ show, activeMessage, children, timeOut, type }) => {
   useEffect(() => {
 		if (show) {
 			toggleMessage()
@@ -13,17 +13,21 @@ const Message = ({ show, activeMessage, children, timeOut }) => {
 		}, timeOut)
 	}
 
+	const bgColor = type === "success" ? "bg-green-500" : "bg-red-500"
+
 	return (
 		<>
 			{
 				show ? 
 					<>
 						<div
-							className="
+							className={`
 								fixed bottom-10 right-15
 								sm:bottom-10 sm:right-10 
-								bg-green-500 p-4 shadow-2xl rounded-lg 
-								flex flex-col item-center gap-8"
+								p-4 shadow-2xl rounded-lg 
+								flex flex-col item-center gap-8
+								${bgColor}`
+							}
 							>
 							<div className="text-slate-50 text-lg">
 								{ children }
