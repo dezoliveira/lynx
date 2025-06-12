@@ -6,6 +6,7 @@ import EditLinkForm from './pages/admin/EditLink/components/EditLinkForm'
 import Dashboard from './pages/admin/Dashboard'
 import Layout from './components/Layout'
 import AdminLayout from './components/AdminLayout'
+import Login from './pages/auth/Login'
 
 export default function AppRoutes() {
   return (
@@ -16,6 +17,14 @@ export default function AppRoutes() {
           <Home />
         </Layout>
       } />
+
+      {
+        <Route path='/login' element={
+          <Layout>
+            <Login />
+          </Layout>
+        } />
+      }
 
       {/* Private routes */}
 

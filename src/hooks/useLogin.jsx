@@ -11,7 +11,7 @@ export default function useLogin() {
     setLoading(true)
 
     try {
-      const userCredentials = await signInWithEmailAndPassword(auth, login, password)
+      const userCredentials = await signInWithEmailAndPassword(auth, email, password)
       const token = await userCredentials.user.getIdToken()
 
       setLoading(false)
