@@ -2,24 +2,36 @@ import styles from '../../admin/styles.module.css'
 import NavigateButton from '../../../components/NavigateButton'
 import useLogin from '../../../hooks/useLogin'
 import { useState } from 'react'
+import Message from '../../../components/Message'
 
 export default function Login() {
-  const { login, error, loading } = useLogin()
-  const [success, setSuccess] = useState("")
+  const { login, loading } = useLogin()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [show, setShow] = useState(false)
+  const [message, setMessage] = useState("")
+  const [messageType, setMessageType] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setMessage("")
+    setShow(false)
     const result = await login(email, password)
 
-    console.log(result)
-
     if (result.success) {
-      alert('suceess')
+      setMessage("Logado com sucesso")
+      setMessageType("success")
+      
     } else {
-      alert('error')
+      setMessage(`Erro: ${result.error}`)
+      setMessageType("error")
     }
+
+    setShow(true)
+  }
+
+  const activeMessage = (active) => {
+    setShow(active)
   }
 
   return (
@@ -44,14 +56,9 @@ export default function Login() {
           <button type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:cursor-pointer hover:opacity-[.9] hover:scale-[1.02] transition-all hover:duration-[.3s] shadow-md rounded-md">Logar</button>
         </div>
 
-        {success && 
-          <Message activeMessage={activeMessage} show={show} timeOut={3000}>
-            { success }
-          </Message>
-        }
-        {error && 
-          <Message activeMessage={activeMessage} show={show} timeOut={3000}>
-            { error }
+        {message && 
+          <Message activeMessage={activeMessage} show={show} timeOut={3000} type={messageType}>
+            { message }
           </Message>
         }
 
