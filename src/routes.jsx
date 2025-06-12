@@ -7,6 +7,7 @@ import Dashboard from './pages/admin/Dashboard'
 import Layout from './components/Layout'
 import AdminLayout from './components/AdminLayout'
 import Login from './pages/auth/Login'
+import PrivateRoute from './components/PrivateRoute'
 
 export default function AppRoutes() {
   return (
@@ -31,9 +32,9 @@ export default function AppRoutes() {
       <Route path='/admin' element={<AdminLayout />}>
         {/* admin */}
         <Route index element={
-          <Layout>
+          <PrivateRoute>
             <Dashboard />
-          </Layout>
+          </PrivateRoute>
         } />
 
         {/* add */}
