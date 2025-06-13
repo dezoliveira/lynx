@@ -18,10 +18,9 @@ export default function useLogin() {
       return { success: true }
       
     } catch (error) {
-      console.error("Erro de login Firebase:", error); // <== isso aqui
       setLoading(false)
-      setError(error.code || error.message)
-      return { success: false, error: error.code || error.message }      
+      setError(error.message)
+      return { success: false, error}      
     }
   }
 

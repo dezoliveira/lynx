@@ -3,8 +3,11 @@ import NavigateButton from '../../../components/NavigateButton'
 import useLogin from '../../../hooks/useLogin'
 import { useState } from 'react'
 import Message from '../../../components/Message'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
+  const navigate = useNavigate()
+
   const { login, loading } = useLogin()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -21,13 +24,14 @@ export default function Login() {
     if (result.success) {
       setMessage("Logado com sucesso")
       setMessageType("success")
+      setShow(true)
+      navigate('/admin')
       
     } else {
       setMessage(`Erro: ${result.error}`)
       setMessageType("error")
+      setShow(true)
     }
-
-    setShow(true)
   }
 
   const activeMessage = (active) => {

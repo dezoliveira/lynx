@@ -33,7 +33,9 @@ export default function AppRoutes() {
         {/* admin */}
         <Route index element={
           <PrivateRoute>
-            <Dashboard />
+            <Layout>
+              <Dashboard />
+            </Layout>
           </PrivateRoute>
         } />
 

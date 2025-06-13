@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { auth } from "../../lib/firebaseConfig";
 
 export default function PrivateRoute({ children }) {
-  const [user, setUser] = useState("null")
+  const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
