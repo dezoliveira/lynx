@@ -8,6 +8,7 @@ import Message from "../../../../../components/Message"
 import NavigateButton from "../../../../../components/NavigateButton"
 import { useLink } from "../../../../../hooks/useLink"
 import { useUpdateLink } from "../../../../../hooks/useUpdateLink"
+import Button from "../../../../../components/Button"
 
 import styles from '../../../styles.module.css'
 
@@ -87,9 +88,12 @@ export default function EditLinkForm() {
                 <input type="color" value={color} onChange={handleChange} className={styles.colorInput}/>
               </div>  
             </div>
-            <div className="text-center mt-4">
-              <button type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:cursor-pointer hover:opacity-[.9] hover:scale-[1.02] transition-all hover:duration-[.3s] shadow-md rounded-md">Salvar Alterações</button>
-            </div>
+
+            <Button
+              text="Salvar Alterações"
+              type="submit"
+              disabled={loading}
+            />
 
             {success && 
               <Message activeMessage={activeMessage} show={show} timeOut={3000}>

@@ -1,0 +1,19 @@
+.btnContainer {
+  @apply
+    text-center
+    mt-4
+}
+
+.button {
+  @apply
+    px-[15px]
+    py-[10px]
+    text-slate-50
+    hover:cursor-pointer
+    hover:opacity-[.9]
+    hover:scale-[1.02]
+    transition-all
+    hover:duration-[.3s]
+    shadow-md
+    rounded-md
+}

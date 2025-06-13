@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useFetchLinks } from "../../../hooks/useFetchLinks"
 
 import styles from './styles.module.css'
+import Button from "../../../components/Button"
 
 export default function Dashboard() {
   const {links, loading, error, fetchLinks} = useFetchLinks()
@@ -10,7 +11,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchLinks()
-  })
+  }, [])
 
   useEffect(() => {
     const getDateInfo = () => {
@@ -40,10 +41,20 @@ export default function Dashboard() {
       </div>
       <div className={styles.dashboardLinks}>
         <Link to="/admin/edit">
-          <button className="bg-blue-500 text-slate-50 py-[8px] shadow-lg rounded-md px-[12px]">Ver Links</button>
+          <Button
+            text="Ver Links"
+            type="button"
+            status="info"
+            disabled={loading}
+          />
         </Link>
         <Link to="/admin/add">
-          <button className="bg-green-500 text-slate-50 py-[8px] shadow-lg rounded-md px-[12px]">Adicionar Links</button>
+          <Button
+            text="Adicionar Links"
+            type="button"
+            status="success"
+            disabled={loading}
+          />
         </Link>
       </div>
     </div>

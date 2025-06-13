@@ -7,6 +7,7 @@ import Message from "../../../components/Message";
 import { useNavigate } from "react-router-dom";
 import NavigateButton from "../../../components/NavigateButton";
 import { useFetchLinks } from "../../../hooks/useFetchLinks";
+import Button from "../../../components/Button";
 
 import styles from '../styles.module.css'
 
@@ -97,9 +98,12 @@ export default function AddLink() {
             <input type="color" value={color} onChange={handleChange} className={styles.colorInput}/>
           </div>  
         </div>
-        <div className="text-center mt-4">
-          <button disabled={maxLinks} type="submit" className="px-[15px] py-[10px] bg-green-500 text-slate-50 hover:cursor-pointer hover:opacity-[.9] hover:scale-[1.02] transition-all hover:duration-[.3s] shadow-md rounded-md">Cadastrar</button>
-        </div>
+
+        <Button
+          text="Cadastrar"
+          type="submit"
+          disabled={maxLinks}
+        />
 
         {success && 
           <Message activeMessage={activeMessage} show={show} timeOut={3000}>
