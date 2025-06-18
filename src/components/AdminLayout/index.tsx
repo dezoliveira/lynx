@@ -10,9 +10,9 @@ import { useState } from "react";
 
 export default function AdminLayout() {
   const navigate = useNavigate()
-  const [message, setMessage] = useState()
-  const [messageType, setMessageType] = useState("")
-  const [show, setShow] = useState(false)
+  const [message, setMessage] = useState<string>("")
+  const [messageType, setMessageType] = useState<string>("")
+  const [show, setShow] = useState<boolean>(false)
   const { logout } = useLogout()
 
   const handleLogout = async () => {  
@@ -31,7 +31,7 @@ export default function AdminLayout() {
     }
   }
 
-  const activeMessage = (active) => {
+  const activeMessage = (active: boolean) => {
     setShow(active)
   }
   
@@ -41,7 +41,7 @@ export default function AdminLayout() {
         <nav className={styles.navbar}>
           <Link to="/admin">Home</Link>
           <Link to="/admin/edit">Editar</Link>
-          <Link onClick={handleLogout}> Logout</Link>
+          <Link to="/" onClick={handleLogout}>Logout</Link>
         </nav>
       </header>
       <main>

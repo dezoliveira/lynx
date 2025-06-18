@@ -1,7 +1,7 @@
 import styles from '../../admin/styles.module.css'
 import NavigateButton from '../../../components/NavigateButton'
 import useLogin from '../../../hooks/useLogin'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Message from '../../../components/Message'
 import { useNavigate } from 'react-router-dom'
 
@@ -19,7 +19,8 @@ export default function Login() {
     e.preventDefault()
     setMessage("")
     setShow(false)
-    const result = await login(email, password)
+
+    const result = await login({ email, password })
 
     if (result.success) {
       setMessage("Logado com sucesso")

@@ -1,6 +1,14 @@
 import { useEffect } from "react"
 
-const Message = ({ show, activeMessage, children, timeOut = 3000, type }) => {
+interface MessageProps {
+	show: boolean
+	activeMessage: (active: boolean) => void
+	children: React.ReactNode
+	timeOut: number
+	type: string
+}
+
+export default function Message({ show, activeMessage, children, timeOut = 3000, type }: MessageProps) {
   useEffect(() => {
 		if (show) {
 			const timer = setTimeout(() => {
@@ -19,9 +27,10 @@ const Message = ({ show, activeMessage, children, timeOut = 3000, type }) => {
 
 	const bgColor = type === "success" ? "bg-green-500" : "bg-red-500"
 
+	// if (!show) return null
+
 	return (
-		show && (
-			<div
+			show && <div
 				className={`
 					fixed bottom-10 right-15
 					sm:bottom-10 sm:right-10 
@@ -34,8 +43,5 @@ const Message = ({ show, activeMessage, children, timeOut = 3000, type }) => {
 					{ children }
 				</div>
 			</div>
-		)
 	)
 }
-
-export default Message

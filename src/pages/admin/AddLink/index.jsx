@@ -102,6 +102,7 @@ export default function AddLink() {
         <Button
           text="Cadastrar"
           type="submit"
+          status="success"
           disabled={maxLinks}
         />
 
