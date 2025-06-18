@@ -5,7 +5,9 @@ import { useState } from 'react'
 import { doc, getDoc } from "firebase/firestore"
 import { db } from "../lib/firebaseConfig"
 
-export function useLink(id) {
+import { Link } from '../types/link'
+
+export function useLink(id: string) {
   const [title, setTitle] = useState("")
   const [url, setUrl] = useState("")
   const [icon, setIcon] = useState("")
@@ -17,7 +19,7 @@ export function useLink(id) {
     const docSnap = await getDoc(ref)
 
     if (docSnap.exists()) {
-      const data = docSnap.data()
+      const data = docSnap.data() as Omit<Link, "id">
       setTitle(data.title || '')
       setUrl(data.url || '')
       setColor(data.color || "#00000")
