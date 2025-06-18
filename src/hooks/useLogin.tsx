@@ -2,11 +2,16 @@ import { useState } from "react";
 import { auth } from "../lib/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-export default function useLogin() {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+interface Login {
+  email: string
+  password: string
+}
 
-  const login = async (email, password) => {
+export default function useLogin() {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const login = async ({ email, password }: Login) => {
     setError("")
     setLoading(true)
 
@@ -17,9 +22,16 @@ export default function useLogin() {
 
       return { success: true }
       
-    } catch (error) {
+    } catch (error: unknown) {
       setLoading(false)
-      setError(error.message)
+
+      if (error instanceof Error) {
+        setError(error.message)
+        
+      } else {
+        setError(String(error))
+      }
+
       return { success: false, error}      
     }
   }

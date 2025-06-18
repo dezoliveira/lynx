@@ -5,12 +5,14 @@ import { useState } from "react"
 import { db } from "../lib/firebaseConfig"
 import { updateDoc, doc } from "firebase/firestore"
 
-export function useUpdateLink(id) {
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState("")
-  const [error, setError] = useState(null)
+import { Link } from "../types/link"
 
-  const updateLink = async(data) => {
+export function useUpdateLink(id: string) {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [success, setSuccess] = useState<string>("")
+  const [error, setError] = useState<string | null>(null)
+
+  const updateLink = async(data: Omit<Link, "id">): Promise<boolean> => {
     setLoading(true)
     setSuccess("")
     setError(null)
@@ -19,14 +21,18 @@ export function useUpdateLink(id) {
 
     try {
       await updateDoc(ref, data)
-
       setSuccess("Link editado com sucesso!")
       setLoading(false)
       return true
     }
 
-    catch (error) {
-      setError("Erro ao editar link" + error.message)
+    catch (error: unknown) {
+      let errorMessage = "Erro ao editar Link"
+
+      if (error instanceof Error) {
+        errorMessage += `: ${error.message}`
+      }
+      setError(errorMessage)
       setLoading(false)
       return false
     }
