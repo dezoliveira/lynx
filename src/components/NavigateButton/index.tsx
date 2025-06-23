@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom"
 import styles from './styles.module.css'
 
-export default function NavigateButton({ link='/', text }) {
+interface NavigateProps {
+  link: '/'
+  text: string
+}
+
+export default function NavigateButton({ link, text } : NavigateProps) {
   const navigate = useNavigate()
   
   return (

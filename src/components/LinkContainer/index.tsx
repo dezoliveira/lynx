@@ -1,6 +1,10 @@
 import styles from './styles.module.css'
 
-export default function LinkContainer({ children }) {
+interface LinkContainerProps {
+  children: React.ReactNode
+}
+
+export default function LinkContainer({ children } : LinkContainerProps) {
   return (
     <div className={styles.linkContainer}>
       <div className={styles.linkContent}>

@@ -1,11 +1,15 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { auth } from "../../lib/firebaseConfig";
 
-export default function PrivateRoute({ children }) {
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
+interface PrivateRouteProps {
+  children: React.ReactNode
+}
+
+export default function PrivateRoute({ children } : PrivateRouteProps) {
+  const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

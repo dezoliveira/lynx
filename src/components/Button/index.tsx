@@ -1,6 +1,14 @@
 import styles from './styles.module.css'
 
-export default function Button({ text, type, status, disabled=false }) {
+interface ButtonProps {
+  text: string
+  type: 'button' | 'submit'
+  status: 'success' | 'info'
+  disabled: boolean
+  
+}
+
+export default function Button({ text, type, status, disabled=false } : ButtonProps) {
   const bgColor = status === 'success' ? 'bg-green-500' : 'bg-blue-500'
 
   return  (

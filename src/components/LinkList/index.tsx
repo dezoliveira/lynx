@@ -13,17 +13,28 @@ import { useNavigate } from "react-router-dom";
 // Styles
 import styles from './styles.module.css'
 
-const LinkList = ({ data, editable=false }) => {
-  const navigate = useNavigate()
-  const [show, setShow] = useState(false)
-  const [link, setLink] = useState("")
-  const refs = []
-  const refs2 = []
+interface LinkItem {
+  id: string
+  title: string
+  url: string
+  icon: string
+  color: string
+}
 
-  useEffect(() => {[refs], [refs2]})
+interface LinkItemProps {
+  data: LinkItem[]
+  editable: boolean
+}
+
+const LinkList = ({ data, editable=false }: LinkItemProps) => {
+  const navigate = useNavigate()
+  const [show, setShow] = useState<boolean>(false)
+  const [link, setLink] = useState<string>("")
+  const refs:any[] = []
+  const refs2:any[] = []
 
   // Play icons on mouseenter
-  const playIcons = (e, refId, ref2Id) => {
+  const playIcons = (e:any, refId: any, ref2Id: any) => {
     e.preventDefault()
 
     // Ref Link Icon
@@ -42,7 +53,7 @@ const LinkList = ({ data, editable=false }) => {
   }
 
   // Capitalize icon title
-  const capitalizeText = (text) => {
+  const capitalizeText = (text: string) => {
     if (!text)
       return
 
@@ -50,14 +61,14 @@ const LinkList = ({ data, editable=false }) => {
   }
 
   // Copy Link
-  const copyLink = (e, link) => {
+  const copyLink = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
     e.preventDefault()
     navigator.clipboard.writeText(link)
     setLink(link)
     activeMessage(true)
   }
 
-  const activeMessage = (active) => {
+  const activeMessage = (active: boolean) => {
     setShow(active)
   }
 
@@ -71,14 +82,14 @@ const LinkList = ({ data, editable=false }) => {
     )
   }
 
-  const handleEdit = (id) => {
+  const handleEdit = (id: string) => {
     console.log(id)
     navigate(`/admin/edit/${id}`)
   }
 
   return (
     <>
-      <Message activeMessage={activeMessage} show={show} timeOut={3000}>
+      <Message type="success" activeMessage={activeMessage} show={show} timeOut={3000}>
         <MessageBody />
       </Message>
       <div>
@@ -118,7 +129,6 @@ const LinkList = ({ data, editable=false }) => {
                           }
                         >
                           <Player
-                            id={link.id}
                             size={32}
                             icon={LINK}
                             ref={refs2[index]}
@@ -135,7 +145,6 @@ const LinkList = ({ data, editable=false }) => {
                             (e) => {playIcons(e, refs[index], false)}
                           }>
                             <Player
-                              id={link.id}
                               size={32}
                               icon={SHARE}
                               ref={refs[index]}
